@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head> 
+<title> Dhaka bus Route </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="design.css">
+
+<script type="text/javascript" src="query.js"></script>
+<script type="text/javascript" src= "myscript.js" >
+</script>
+</head>
+<body>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalLong" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+	<div class="modal-dialog  modal-dialog-scrollable" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h5 class="modal-title text-dark" id="exampleModalLongTitle">Route</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
+		<div class="modal-body">
+		 
+			<ul class="busRoutes">
+				<!-- will be add dynamically -->
+				<!-- <li>Start</li>
+				<li>Station</li>
+				<li>Station</li>
+				<li>End</li> -->
+			</ul>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <!-- wrapper -->
+<div class="wrapper">
+	<section id="main-body">
+		<div class="container">
+			<div class="row">
+				<div class="split left col-md-6 ">
+					<div class="inner">
+						<span class="menu text-dark mb-2">&#9776; Menu</span>
+						<iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d29212.895494355333!2d90.35914680117119!3d23.761213991306782!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x3755c0f596a1ef75%3A0x1c386acb29c34356!2sGabtoli%2C%20Bangladesh!3m2!1d23.783725699999998!2d90.34424489999999!4m5!1s0x3755b888ad339cb5%3A0x20c70986185ad2ba!2sMogbazar%2C%20Dhaka%2C%20Bangladesh!3m2!1d23.749357099999997!2d90.4089838!5e0!3m2!1sen!2sca!4v1586150284216!5m2!1sen!2sca" width="100%" height="auto" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="mt-2"></iframe>
+					<div class="centered">
+						<form id="searchBusForm" class="mt-2">
+						  <input class="inputOne" class="w-100" type="text" id="myInput"  placeholder="Departure From" size="50" required list="locations">
+						  <input class="inputTwo" class="w-100" type="text" id="myInput2"  placeholder="Final Destination" size="50" required list="locations">
+						  <datalist id="locations" class="w-100"></datalist>
+						<input id="searchBtn" type="submit" value="Search" class="w-100" style="color: white">
+						</form>
+					</div>
+				  
+					</div>
+				</div>
+				<!-- Right side html-->
+				<div class="split right col-md-6 ">
+				  <div class="centereTop">
+					<h2 id="sourceTODestination" class="text-center">Departure - Destination</h2>
+				  </div>
+						
+				<div class="textBox" id="searchResult">
+					<table >
+						<thead >
+						<tr><td>Bus Name</td>
+							<td>First Station</td>
+							<td>Last Station</td>
+							<td>Bust Type</td>
+							<td>Action</td></tr>
+						</thead>
+						<tbody id="outputTable"></tbody>
+				
+					</table>
+				</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="Navbar">
+		<div class="container">
+			<div class="navbar">
+				<a href="#home" id="floatLeft" class="active" >Home</a>
+				<a href="busList.html" class="floatRight" >All Bus</a>
+					<a href="addBuses.html" class="floatRight" >Add Bus</a>
+			  </div>
+		</div>
+	</section>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+
+<script src="main.js"></script>
+<script>
+	var options='';
+	if(busList.length>0){
+
+		for (let i=0;i<AllLocations.length;i++){
+			options +=`<option>${AllLocations[i]}</option>`;
+			document.getElementById('locations').innerHTML=options;
+		}
+	}
+
+	if(busList.length>0){
+		showSearchResult(busList);
+		// modalFunc();
+	}
+
+	const searchBusForm=document.getElementById('searchBusForm');
+	const sourceTODestination=document.getElementById('sourceTODestination')
+
+	searchBusForm.addEventListener('submit',function (e) {
+		e.preventDefault();
+
+		let foundBuses=searchBus();
+		if (foundBuses.length>0){
+			showSearchResult(foundBuses);
+			modalFunc();
+			// modalFunc();
+		}else{
+			outputTable.style.textAlign='center';
+			outputTable.innerHTML=`<p id="notFound">Sorry! No buses found.</p>`;
+			setTimeout(function () {
+			document.getElementById('notFound').style.display='none';
+			showSearchResult(busList);
+			modalFunc()
+			sourceTODestination.innerText=`Source - Destination`;
+				modalFunc();
+			},7000)
+		}
+		searchBusForm.reset();
+
+	})
+
+	outputTable.addEventListener('click',function (e) {
+		e.preventDefault();
+		let id=e.target.nextElementSibling.innerText;
+		if(e.target.className=='seeRoute button open-modal'){
+			console.log(id);
+			showRouteHome(id);
+		}
+	})
+
+	function showRouteHome(busId) {
+		let list=document.querySelector('.busRoutes');
+		list.innerHTML='';
+		
+		currentBus=busList.filter(function (bus) {
+			return bus.id==busId
+		});
+		currentBus[0].stationArray.forEach(function (station) {
+			let li= document.createElement('li');
+			li.appendChild(document.createTextNode(station));
+			list.appendChild(li);
+		});
+
+
+	}
+function modalFunc() {
+
+
+	var modal = document.querySelector('.modal');
+	var closeButtons = document.querySelector('.close-modal');
+
+
+	// set open modal behaviour
+	btns=document.querySelectorAll('.open-modal');
+
+	function toggler() {
+
+		modal.classList.toggle('modal-open');
+		console.log('777')
+	}
+
+	btns.forEach(function (btn) {
+
+		btn.addEventListener('click',toggler);
+	})
+	// set close modal behaviour
+
+
+
+	closeButtons.addEventListener('click',function () {
+		toggler();
+		document.location.reload();
+	});
+
+
+
+
+	// close modal if clicked outside content area
+
+	document.querySelector('.modal-inner').addEventListener('click', toggler);
+	// prevent modal inner from closing parent when clicked
+	document.querySelector('.modal-content').addEventListener('click', function(e) {
+		e.stopPropagation();
+
+	});
+
+}
+</script>
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

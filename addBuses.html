@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="query.js"></script>
+    <style>
+
+        ul#currentBuses:hover .deleteBus{
+            visibility: visible;
+        }
+        .deleteBus:hover {
+            background-color: red;
+            color: #fff;
+        }
+        .deleteBus{
+            text-transform: capitalize;
+           visibility: visible;
+            margin-top: 4px;
+            border: 2px solid #ff00006b;
+            padding: 0px 5px;
+            margin-left: 5px;
+            float: right;
+            color: rgb(19, 19, 19);
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: 0.2s;
+            font-weight: bold;
+
+        }
+    </style>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="buslist.css">
+    <title>AddBus</title>
+</head>
+<body style="background-color: #ddd;">
+
+<div id="wrapper">
+    <section id="main-body">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="leftbar col-lg-6 col-md-12">
+                    <div class="bus-input">
+                        <h5>Add new Bus</h5>
+                    <form class="u-max-full-width u-full-width " id="addBusForm">
+                        <input class="u-full-width" type="text" placeholder="Bus Name" required id="addBusName">
+                        <input class="u-full-width" type="text" placeholder="Route No" id="addBusRoute" >
+                        <select class="u-full-width"   id="addBusType">
+                            <option disabled selected value="sitting">----Bus Type----</option>
+                            <option value="sitting">sitting</option>
+                            <option value="local">local</option>
+                        </select>
+                
+                
+                        <label for="addBusStationList">Stations [Start to Finish, Separated by comma]:</label>
+                        <textarea id="addBusStationList" class="u-full-width" placeholder="dhanmondi,shyamoli,bangla college,mirpur 10,uttara etc " required ></textarea>
+                        <input type="submit" class="button-primary u-full-width">
+                
+                    </form>
+                
+                
+                    </div>
+                </div>
+
+                <div class="rightbar c col-lg-6 col-md-12">
+                    <div class="current-buses">
+                        <h5>Current Buses:</h5>
+                      <ul id="currentBuses">
+                
+                      </ul>
+                        <button class="button restore" onclick="saveBusData()">Restore All Default Buses</button>
+                        <button class="button json" onclick="getBusJSON()">Get JSON ( developer only)</button>
+                
+                    </div>
+                </div>
+
+            </div>
+            <div class="navbar">
+                <a href="busList.html" id="floatLeft" class="active" >All bus</a>
+                <a href="home.html" class="floatRight" >Home</a>
+            </div>
+        </div>
+        
+    </section>
+</div>
+<script src="main.js"></script>
+<script>
+    addbus=document.getElementById('addBusForm');
+    addbus.addEventListener('submit',function (e) {
+        e.preventDefault();
+        let busId;
+       if(busList.length>0){busId=parseInt(busList[busList.length-1].id)+1;}else{busId=1}
+        let addBusName=document.getElementById('addBusName').value;
+        let addBusType=document.getElementById('addBusType').value;
+        let addBusRoute=document.getElementById('addBusRoute').value;
+        let addBusStationList=document.getElementById('addBusStationList').value.replace(/\s*,\s*/g, ",");
+        let stations=addBusStationList.split(',');
+        let bus=new Bus(busId,addBusName,addBusRoute,addBusType,stations);
+        ui.saveBusesToLS(bus);
+
+        busList.push(bus);
+        addbustoList();
+        addbus.reset();
+    });
+
+    function addbustoList(){
+        let list=document.getElementById('currentBuses');
+        list.innerHTML='';
+        if(busList.length>0){ busList.forEach(function (bus) {
+            list.innerHTML=list.innerHTML+`<li><span id="busId" style="opacity: 0">${bus.id}</span>${bus.busName} <span class="deleteBus">X</span></li>`;
+        })}
+
+    }
+    addbustoList();
+
+    function getBusJSON() {
+        document.write(JSON.stringify(ui.getBusesFromLS()));
+    }
+
+    document.getElementById('currentBuses').addEventListener('click',function (e) {
+        e.preventDefault();
+        if (e.target.className=='deleteBus'){
+            if (confirm('Are you sure to delete this bus?')){
+                ui.deleteBusesFromLS(e.target.parentElement.firstElementChild.innerText)
+                e.target.parentElement.remove();
+            }
+
+        }
+    });
+</script>
+
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

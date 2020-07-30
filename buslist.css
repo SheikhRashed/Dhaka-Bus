@@ -1,0 +1,299 @@
+* {
+  box-sizing: border-box;
+
+}
+body {
+  font-family: "Lato", sans-serif;
+  background: #ddd;
+}
+.centereTop{
+  background: #fff;
+  text-transform: capitalize;
+  padding: 12px;
+  margin-bottom: 5px;
+}
+/* Sidebar sticky */
+.sidebar-item{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+.make-me-sticky {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 150px;
+    }
+
+
+#myInput {
+  /*background-image: url('/css/searchicon.png');*/
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myUL {
+    text-transform: capitalize;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+    max-height: 400px;
+    overflow: auto;
+}
+
+#myUL li a {
+    text-align: left;
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 11px;
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
+  display: block
+}
+
+#myUL li a:hover:not(.header) {
+  background-color: #eee;
+}
+/* .split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+} */
+
+/* Control the left side */
+/* .left {
+  left: 0;
+  background-color: #b3b0aa;
+} */
+
+/* Control the right side */
+/* .right {
+  right: 0;
+  background-color: #333333;
+} */
+
+/* If you want the content centered horizontally and vertically */
+/* .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+} */
+/* .centereTop {
+  position: absolute;
+  
+  left: 52%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+} */
+
+/* Style the image inside the centered container, if needed */
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+/* Css part for bottom nav bar*/
+.navbar {
+  background-color: #333;
+  margin-top: 20px;
+}
+
+.navbar a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.floatRight{
+	float:right;
+	
+}
+#floatLeft{
+	float:left;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
+}
+/*deisgn for text box of right side split screen*/
+.busRoutes li {
+    text-transform: capitalize;
+    color: white;
+    list-style-type: none;
+    line-height: 50px;
+}
+  .textBox{
+
+
+	text-align: left;
+	background-color: #333333;
+	border: 3px;
+	padding: 10px;
+}
+/*mini text box deisgn */
+.station{
+    text-transform: capitalize;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid lightgray;
+    color:#333;
+    margin-bottom: 5px;
+    background: #fff;
+}
+  .miniText{
+	position: absolute;
+	top: 4%;
+	left: 30%;
+	text-align:center;
+	background-color:#825858;
+	color: white;
+	width: 50%;
+	height: 15%;
+	border: 3px;
+	padding: 2px;
+	margin: 2px;
+	border: 3px solid;
+	padding-top: 4px;
+	margin-top: 3%;
+	border-color:lightgrey;
+}
+.miniText p{
+	color:white;
+	text-align:center;
+	
+}
+
+/*bus route style*/
+
+.busRoutes li:before {border: 1px solid gold;content: '';margin-right: 9px;color: white;background-color: white;border-radius: 50%;padding: 1px 10px;z-index: 2;position: relative;}
+
+.busRoutes li:after {content: ' ';padding: 24px 2px;position: relative;color: green;background-color: gold;float: left;left: 12px;top: 18px;z-index: 1;}
+
+.busRoutes li:last-child:after {
+
+    visibility: hidden;
+
+}
+
+
+.busRoutes li:first-child:before {
+    background-color: #23de23;
+}
+
+.busRoutes li:last-child:before {
+    background-color: #fb4141;
+
+}
+#wrapper{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin: 20px 0px;
+ background: #ddd;
+ /* height: 100%; */
+}
+
+/* Add bus section */
+.current-buses{
+  display: flex;
+  flex-direction: column;
+
+}
+.bus-input h5,
+.current-buses h5{
+  font-size: 26px;
+  text-transform: capitalize;
+}
+
+.bus-input form input,
+.bus-input form select{
+  font-size: 16px;
+  margin: 8px 0px;
+}
+.bus-input form label{
+  font-size: 12px;
+}
+
+.bus-input form textarea{
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+input[type=submit].button-primary
+ {
+  background-color: #343a40;
+  border:none;
+}
+input[type=submit].button-primary:hover{
+  background-color: #343a40b2;
+}
+
+#currentBuses{
+  background-color: #fff;
+  list-style-type: decimal;
+  max-height: 400px;
+  overflow: auto;
+  padding: 16px 10px;
+}
+
+#currentBuses li{
+  text-transform: capitalize;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  padding: 12px;
+  margin-bottom: 5px;
+}
+.restore{
+  background: #15c39a;
+    color: #fff;
+}
+.json{
+  background: #ffc107;
+  color: #fff;
+}
+select,
+option{
+  text-transform: capitalize;
+}
+
+.leftbar{
+  display: flex;
+  align-items: center;
+}
+/* Responsive */
+@media(max-width: 767px) {
+  .sidebar-item{
+    position: relative;
+  }
+  #wrapper{
+    height: 100%;
+  }
+}

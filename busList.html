@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> bus list </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="buslist.css">
+</head>
+<body>
+<div id="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="split left col-md-6">
+        <div class="sidebar-item">
+          <div class="make-me-sticky">
+            <div class="centered">
+              <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for bus.." title="Type in a name">
+              
+              <ul id="myUL">
+                <li><a href="#">Nabil</a></li>
+                <li><a href="#">D link </a></li>
+              
+                <li><a href="#">7 no </a></li>
+                <li><a href="#">Bkash </a></li>
+              
+                <li><a href="#">VIP-27</a></li>
+                <li><a href="#">TransSilva</a></li>
+                <li><a href="#">Wellcome</a></li>
+                <li><a href="#">Nabil</a></li>
+                <li><a href="#">D link </a></li>
+              
+                <li><a href="#">7 no </a></li>
+              </ul>
+                <div class="navbar">
+                <a href="busList.html" id="floatLeft" class="active" >All bus</a>
+                <a href="home.html" class="floatRight" >Home</a>
+                    <a href="addBuses.html" class="floatRight" >Add Bus</a>
+              </div>
+           </div>
+          </div>
+        </div>
+
+       </div>
+       <div class="split right col-md-6">
+           <div class="center">
+             <div class="centereTop">
+               <h2 id="busName" class="text-center">Bus Name</h2>
+             </div>
+           
+               <p class="station"><span id="from">Start</span> - <span id="to">End</span> <span id="RouteNO" style="display: block;margin: 2px">RouteNo: N/A</span></p>
+           
+           
+           <div class="textBox busRoute">
+             <ul class="busRoutes">
+                 <li>Start</li>
+                 <li>Station</li>
+                 <li>Station</li>
+                 <li>End</li>
+               </ul>
+           </div>
+           </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+<script src="main.js"></script>
+<script>
+        let list=document.getElementById('myUL');
+        list.innerHTML='';
+        busList.forEach(function (bus) {
+            list.innerHTML=list.innerHTML+`  <li><a href="#" class="bus"><span class="busId">${bus.id}</span>. ${bus.busName}</a></li>`;
+        })
+        list.addEventListener('click',function (e) {
+            e.preventDefault();
+                if (e.target.className='bus'){
+                   showRoute(e.target.firstElementChild.innerText);
+                }
+
+        });
+</script>
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

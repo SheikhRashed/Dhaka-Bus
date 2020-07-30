@@ -1,0 +1,5 @@
+desktop.ini
+test_ignore.txt
+*.ini
+**/desktop.ini
+.idea

@@ -1,0 +1,294 @@
+@import "https://fonts.googleapis.com/css?family=Raleway";
+
+*{
+  text-transform: capitalize;
+}
+ul, .logo:hover>div {
+    display: none;
+}
+
+table{
+  width: 100%;
+
+
+}
+#searchResult {
+  max-height: 400px;
+  overflow: auto;
+}
+#sourceTODestination{
+  text-transform: capitalize;
+}
+thead{
+
+  background-color: darkslategray;
+}
+tbody tr td:nth-child(1){
+  color: darkslategray;
+
+  font-weight: bold;
+  background-color: #1bed98;
+}
+td{
+  text-transform: capitalize;
+  border: 1px solid darkslategray;
+  padding: 8px;
+}
+
+#searchBtn{
+  font-size: 25px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #444;
+  margin-top: 10px;
+  margin-right: auto;
+  border-radius: 5px;
+  display: block;
+}
+.inputOne{
+	width:40%;
+	float: left;
+	
+}
+#locations{
+  width: 100%;
+}
+select{
+  border-radius: 5px;
+ color: #3d3d3d;
+}
+#myInput,#myInput2 {
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+
+body {
+  font-family: "Lato", sans-serif;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  /* overflow-x: hidden; */
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+body {
+  font-family: Arial;
+  color: white;
+  background-color: #ddd;
+}
+
+.split {
+ padding: 20px 15px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  background-color:#f8f8f8;
+}
+
+.right {
+  background-color: #333333;
+}
+
+/* .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+} */
+/* .centereTop {
+  position: absolute;
+  
+  left: 55%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+} */
+
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+/* Css part for bottom nav bar*/
+#Navbar .container{
+  padding: 0;
+}
+.navbar {
+  border: 1px solid white;
+  border-bottom: none;
+  border-left: none;
+  background-color: #333;
+  /* position: fixed; */
+  bottom: 0;
+  /* width: 50%; */
+}
+
+.navbar a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.floatRight{
+	float:right;
+	
+}
+#floatLeft{
+	float:left;
+}
+
+.navbar a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.seeRoute{
+  padding: 3px 10px;
+  border-radius: 5px;
+  background-color: #1bed98;
+  cursor: pointer;
+}
+
+.main {
+  padding: 16px;
+  margin-bottom: 30px;
+}
+  .textBox{
+	text-align: center; 
+	background-color: #333333;
+	border: 3px solid lightgray;
+	padding: 8px;
+  margin-bottom: 15px;
+}
+/* All bus part */
+
+.busRoutes li:before {border: 1px solid gold;
+  content: '';
+  margin-right: 9px;
+  color: white;
+  background-color: white;
+  border-radius: 50%;padding: 1px 10px;
+  z-index: 2;
+  position: relative;
+}
+
+.busRoutes li:after {content: ' ';
+  padding: 14px 2px;
+  position: relative;
+  color: green;
+  background-color: rgb(66, 66, 65);
+  float: left;
+  left: 12px;
+  top: 18px;
+  z-index: 1;}
+
+.busRoutes li:last-child:after {
+
+  visibility: hidden;
+
+}
+
+
+.busRoutes li:first-child:before {
+  background-color: #23de23;
+}
+
+.busRoutes li:last-child:before {
+  background-color: #fb4141;
+
+}
+.busRoutes li{
+  margin: 25px;
+  list-style-type: none;
+  color: #3d3d3d;
+}
+.busRoutes{
+  display: unset !important;
+}
+.modal-body{
+  background-color: #f1f1f1
+}
+
+.demo-container {
+  text-align: center;
+}
+
+
+	
+	
+  /* Responsive Css Goes here */
+  /* for container */
+  @media(min-width: 1200px) {
+    .container {
+      max-width: 1400px;
+    }
+  }
+  @media(max-width: 576px) {
+    body{
+      display: block;
+      height: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+    td{
+      padding: 2px;
+      font-size: 12px;
+    }
+  }
+	
+	
+	
+	
+	
+	
